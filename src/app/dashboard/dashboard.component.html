@@ -1,2 +1,30 @@
-<p>dashboard works!</p>
-<router-outlet></router-outlet>
+<nz-layout>
+    <nz-sider nzTheme="light" nzCollapsible [(nzCollapsed)]="isCollapsed" [nzTrigger]="null">
+        <div *ngIf="!isCollapsed" class="logo-wrapper">
+            <img src="assets/paymart-logo-emplem.png" width="50" alt="" class="logo no-select" />
+        </div>
+        <img *ngIf="isCollapsed" src="assets/paymart-logo-emplem.png" width="30" alt="" class="logo-small no-select" />
+        <ul class="menu-items" nz-menu nzTheme="light" nzMode="inline">
+            <li routerLinkActive="ant-menu-item-selected" routerLink="/login" nz-menu-item>
+                <i nz-icon nzType="mail"></i>
+                <span>e-mail</span>
+            </li>
+        </ul>
+    </nz-sider>
+    <nz-layout>
+        <nz-header nzTheme="light">
+            <i
+                class="trigger"
+                nz-icon
+                [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+                (click)="isCollapsed = !isCollapsed"
+            ></i>
+        </nz-header>
+        <nz-content>
+            <nz-card class="route-wrapper">
+                <router-outlet></router-outlet>
+            </nz-card>
+        </nz-content>
+        <nz-footer>Paymart © {{ year }}</nz-footer>
+    </nz-layout>
+</nz-layout>
