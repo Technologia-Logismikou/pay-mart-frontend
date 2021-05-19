@@ -1,1 +1,31 @@
-<p>login works!</p>
+<div class="container">
+    <div class="login-form">
+        <h2>Σύνδεση</h2>
+
+        <form nz-form [formGroup]="loginForm" (ngSubmit)="submitForm()">
+            <nz-form-item>
+                <nz-form-control [nzErrorTip]="emailErrorTemplate">
+                    <nz-input-group nzPrefixIcon="mail">
+                        <input type="text" nz-input formControlName="email" placeholder="Email" />
+                    </nz-input-group>
+                </nz-form-control>
+
+                <ng-template #emailErrorTemplate let-control>
+                    <ng-container *ngIf="control.hasError('required')"> Το πεδίο email είναι απαραίτητο </ng-container>
+                    <ng-container *ngIf="control.hasError('email')">
+                        Το email δεν είναι της σωστής μορφής
+                    </ng-container>
+                </ng-template>
+            </nz-form-item>
+            <nz-form-item>
+                <nz-form-control nzErrorTip="Το πεδίο του κωδικού ειναι απαραίτητο">
+                    <nz-input-group nzPrefixIcon="lock">
+                        <input type="password" nz-input formControlName="password" placeholder="Κωδικός" />
+                    </nz-input-group>
+                </nz-form-control>
+            </nz-form-item>
+            <button nz-button type="submit" [disabled]="loginForm.invalid" [nzType]="'primary'">Σύνδεση</button>
+            Ή <a> εγγραφή τώρα! </a>
+        </form>
+    </div>
+</div>
