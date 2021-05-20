@@ -10,6 +10,8 @@ import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzCardModule } from 'ng-zorro-antd/card';
+import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
+import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 
 const ngZorroDeps = [
     NzFormModule,
@@ -20,6 +22,8 @@ const ngZorroDeps = [
     NzMenuModule,
     NzIconModule,
     NzCardModule,
+    NzDropDownModule,
+    NzAvatarModule,
 ];
 
 @NgModule({
