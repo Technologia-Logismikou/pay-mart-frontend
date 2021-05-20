@@ -1,2 +1,73 @@
-<p>dashboard works!</p>
-<router-outlet></router-outlet>
+<nz-layout>
+    <nz-sider nzTheme="light" nzCollapsible [(nzCollapsed)]="isCollapsed" [nzTrigger]="null">
+        <div *ngIf="!isCollapsed" class="logo-wrapper">
+            <img src="assets/logo_full.png" width="100" alt="" class="logo no-select" />
+        </div>
+        <img *ngIf="isCollapsed" src="assets/paymart-logo-emplem.png" width="30" alt="" class="logo-small no-select" />
+        <ul class="menu-items" nz-menu nzTheme="light" nzMode="inline">
+            <li
+                *ngFor="let item of navigationItems"
+                routerLinkActive="ant-menu-item-selected"
+                [routerLink]="['.', item.route]"
+                nz-menu-item
+            >
+                <i nz-icon [nzType]="item.icon"></i>
+                <span>{{ item.title }}</span>
+            </li>
+        </ul>
+    </nz-sider>
+    <nz-layout>
+        <nz-header nzTheme="light">
+            <i
+                class="trigger"
+                nz-icon
+                [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+                (click)="isCollapsed = !isCollapsed"
+            ></i>
+
+            <div class="context-menu">
+                <a class="item" nz-dropdown [nzDropdownMenu]="languageMenu" nzTrigger="click">
+                    <i style="font-size: 20px" nz-icon nzType="global" nzTheme="outline"></i>
+                </a>
+                <nz-dropdown-menu #languageMenu="nzDropdownMenu">
+                    <ul nz-menu nzSelectable>
+                        <li
+                            nz-menu-item
+                            *ngFor="let locale of localeList"
+                            (click)="changeLocaleTranslation(locale.value)"
+                        >
+                            {{ locale.title }}
+                        </li>
+                        <li nz-menu-item nzDisabled>Περισσότερες γλώσσες στο μέλλον</li>
+                    </ul>
+                </nz-dropdown-menu>
+
+                <a class="item" nz-dropdown [nzDropdownMenu]="notificationMenu" nzTrigger="click">
+                    <i style="font-size: 20px" nz-icon nzType="notification" nzTheme="outline"></i>
+                </a>
+
+                <nz-dropdown-menu #notificationMenu="nzDropdownMenu">
+                    <ul nz-menu nzSelectable>
+                        <li nz-menu-item nzDisabled>Καμία ειδοποίηση</li>
+                    </ul>
+                </nz-dropdown-menu>
+
+                <a class="item" nz-dropdown [nzDropdownMenu]="userMenu" nzTrigger="hover">
+                    <nz-avatar [nzSize]="36" nzIcon="user"></nz-avatar>
+                </a>
+                <nz-dropdown-menu #userMenu="nzDropdownMenu">
+                    <ul nz-menu nzSelectable>
+                        <li nz-menu-item>Ρυθμίσεις</li>
+                        <li nz-menu-item nzDanger>Έξοδος</li>
+                    </ul>
+                </nz-dropdown-menu>
+            </div>
+        </nz-header>
+        <nz-content>
+            <nz-card class="route-wrapper">
+                <router-outlet></router-outlet>
+            </nz-card>
+        </nz-content>
+        <nz-footer>Paymart © {{ year }}</nz-footer>
+    </nz-layout>
+</nz-layout>

@@ -6,8 +6,25 @@ import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzMessageModule } from 'ng-zorro-antd/message';
+import { NzLayoutModule } from 'ng-zorro-antd/layout';
+import { NzMenuModule } from 'ng-zorro-antd/menu';
+import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzCardModule } from 'ng-zorro-antd/card';
+import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
+import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 
-const ngZorroDeps = [NzFormModule, NzInputModule, NzButtonModule, NzMessageModule];
+const ngZorroDeps = [
+    NzFormModule,
+    NzInputModule,
+    NzButtonModule,
+    NzMessageModule,
+    NzLayoutModule,
+    NzMenuModule,
+    NzIconModule,
+    NzCardModule,
+    NzDropDownModule,
+    NzAvatarModule,
+];
 
 @NgModule({
     declarations: [],

@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
+nz-sider {
+    height: 100vh;
+    position: sticky;
+    top: 0;
+
+    .menu-items {
+        margin-top: 30px;
+    }
+
+    .logo-wrapper {
+        // `: black;
+        width: 120px;
+        height: 120px;
+        margin: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        .logo {
+            width: 100%;
+        }
+    }
+
+    .logo-small {
+        margin: auto;
+        display: block;
+        margin-top: 15px;
+    }
+
+    .letters-wrapper {
+        display: flex;
+        justify-content: center;
+        .letters {
+            width: 65%;
+        }
+    }
+}
+
+nz-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: white;
+    z-index: 1;
+
+    .context-menu {
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+
+        .item {
+            margin-left: 20px;
+        }
+    }
+}
+
+nz-content {
+    padding: 60px;
+    background-color: #e4e4e4;
+
+    .route-wrapper {
+        box-shadow: var(--tw-shadow);
+    }
+}
+
+nz-footer {
+    text-align: center;
+}

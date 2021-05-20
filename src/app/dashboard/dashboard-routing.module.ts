@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppearanceComponent } from './appearance/appearance.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { DashboardComponent } from './dashboard.component';
+import { DeliveryZonesComponent } from './delivery-zones/delivery-zones.component';
 import { MainComponent } from './main/main.component';
 import { OrdersComponent } from './orders/orders.component';
 import { ProductsComponent } from './products/products.component';
@@ -14,11 +15,11 @@ const routes: Routes = [
         children: [
             {
                 path: '',
-                redirectTo: 'main',
+                redirectTo: 'home',
                 pathMatch: 'full',
             },
             {
-                path: 'main',
+                path: 'home',
                 component: MainComponent,
             },
             {
@@ -36,6 +37,10 @@ const routes: Routes = [
             {
                 path: 'appearance',
                 component: AppearanceComponent,
+            },
+            {
+                path: 'delivery-zones',
+                component: DeliveryZonesComponent,
             },
         ],
     },
