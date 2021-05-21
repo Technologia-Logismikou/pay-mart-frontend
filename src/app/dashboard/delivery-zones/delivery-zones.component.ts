@@ -1,15 +1,79 @@
 import { Component, OnInit } from '@angular/core';
+import { COUNTIES } from '../../helpers/constants';
 
 @Component({
-  selector: 'app-delivery-zones',
-  templateUrl: './delivery-zones.component.html',
-  styleUrls: ['./delivery-zones.component.scss']
+    selector: 'app-delivery-zones',
+    templateUrl: './delivery-zones.component.html',
+    styleUrls: ['./delivery-zones.component.scss'],
 })
 export class DeliveryZonesComponent implements OnInit {
+    public shippingZones = [
+        // {
+        //     name: 'Για την αττική',
+        //     counties: ['Αττικής'],
+        //     rate: 5,
+        // },
+        // {
+        //     name: 'Εκτός Αττικής',
+        //     counties: [
+        //         'Αιτωλοακαρνανίας',
+        //         'Αργολίδας',
+        //         'Αρκαδίας',
+        //         'Άρτας',
+        //         'Αχαΐας',
+        //         'Βοιωτίας',
+        //         'Γρεβενών',
+        //         'Δράμας',
+        //         'Δωδεκανήσου',
+        //         'Έβρου',
+        //         'Ευβοίας',
+        //         'Ευρυτανίας',
+        //         'Ζακύνθου',
+        //         'Ηλείας',
+        //         'Ημαθίας',
+        //         'Ηρακλείου',
+        //         'Θεσπρωτίας',
+        //         'Θεσσαλονίκης',
+        //         'Ιωαννίνων',
+        //         'Καβάλας',
+        //         'Καρδίτσας',
+        //         'Καστοριάς',
+        //         'Κέρκυρας',
+        //         'Κεφαλληνίας',
+        //         'Κιλκίς',
+        //         'Κοζάνης',
+        //         'Κορινθίας',
+        //         'Κυκλάδων',
+        //         'Λακωνίας',
+        //         'Λάρισας',
+        //         'Λασιθίου',
+        //         'Λέσβου',
+        //         'Λευκάδας',
+        //         'Μαγνησίας',
+        //         'Μεσσηνίας',
+        //         'Ξάνθης',
+        //         'Πέλλας',
+        //         'Πιερίας',
+        //         'Πρέβεζας',
+        //         'Ρεθύμνης',
+        //         'Ροδόπης',
+        //         'Σάμου',
+        //         'Σερρών',
+        //         'Τρικάλων',
+        //         'Φθιώτιδας',
+        //         'Φλώρινας',
+        //         'Φωκίδας',
+        //         'Χαλκιδικής',
+        //         'Χανίων',
+        //         'Χίου',
+        //     ],
+        //     rate: 5,
+        // },
+    ];
 
-  constructor() { }
+    public counties = COUNTIES;
 
-  ngOnInit(): void {
-  }
+    constructor() {}
 
+    public ngOnInit(): void {}
 }

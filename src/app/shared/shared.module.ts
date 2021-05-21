@@ -12,6 +12,9 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
+import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
+import { NzDividerModule } from 'ng-zorro-antd/divider';
+import { NzEmptyModule } from 'ng-zorro-antd/empty';
 
 const ngZorroDeps = [
     NzFormModule,
@@ -24,11 +27,14 @@ const ngZorroDeps = [
     NzCardModule,
     NzDropDownModule,
     NzAvatarModule,
+    NzPageHeaderModule,
+    NzDividerModule,
+    NzEmptyModule,
 ];
 
 @NgModule({
     declarations: [],
-    imports: [CommonModule, ...ngZorroDeps, ReactiveFormsModule, FormsModule],
+    imports: [...ngZorroDeps, CommonModule, ReactiveFormsModule, FormsModule],
     exports: [...ngZorroDeps, ReactiveFormsModule, FormsModule],
 })
 export class SharedModule {}

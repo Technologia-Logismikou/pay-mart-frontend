@@ -25,6 +25,10 @@
                 (click)="isCollapsed = !isCollapsed"
             ></i>
 
+            <div *ngIf="isCollapsed" class="logo-wrapper">
+                <img src="assets/logo_full.png" width="100" alt="" class="logo no-select" />
+            </div>
+
             <div class="context-menu">
                 <a class="item" nz-dropdown [nzDropdownMenu]="languageMenu" nzTrigger="click">
                     <i style="font-size: 20px" nz-icon nzType="global" nzTheme="outline"></i>

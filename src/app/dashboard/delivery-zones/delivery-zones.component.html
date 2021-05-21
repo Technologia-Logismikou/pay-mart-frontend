@@ -1,1 +1,21 @@
-<p>delivery-zones works!</p>
+<nz-page-header
+    class="site-page-header"
+    nzBackIcon
+    nzTitle="Ζώνες Αποστολής"
+    nzSubtitle="Επεξεργάσου τις ζώνες αποστολής."
+>
+</nz-page-header>
+
+<div class="content">
+    <h3>Διαθέσιμες ζώνες</h3>
+
+    <nz-empty
+        *ngIf="!shippingZones.length"
+        [nzNotFoundContent]="'Δεν υπάρχουν ζώνες αποστολής... Δημιούργησε την πρώτη!'"
+        [nzNotFoundFooter]="footerTemplate"
+    ></nz-empty>
+
+    <ng-template #footerTemplate>
+        <button nz-button nzType="primary"><i nz-icon nzType="plus"></i> Δημιουργία</button>
+    </ng-template>
+</div>
