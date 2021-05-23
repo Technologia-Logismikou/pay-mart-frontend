@@ -1,0 +1,41 @@
+<form [formGroup]="productForm">
+    <nz-form-item>
+        <nz-form-label [nzSpan]="7" nzRequired>Όνομα Προϊόντος</nz-form-label>
+        <nz-form-control [nzSpan]="12" [nzErrorTip]="nameErrorTpl">
+            <input nz-input formControlName="name" placeholder="Όνομα" />
+        </nz-form-control>
+        <ng-template #nameErrorTpl let-control>
+            <ng-container *ngIf="control.hasError('required')"> Το πεδίο "Όνομα" είναι απαραίτητ </ng-container>
+        </ng-template>
+    </nz-form-item>
+
+    <nz-form-item>
+        <nz-form-label [nzSpan]="7" nzRequired>Τιμή</nz-form-label>
+        <nz-form-control [nzSpan]="12" [nzErrorTip]="priceErrorTip">
+            <nz-input-number
+                formControlName="price"
+                [nzMin]="0"
+                [nzStep]="0.01"
+                [nzFormatter]="euroFormatter"
+                [nzParser]="euroParser"
+            ></nz-input-number>
+        </nz-form-control>
+        <ng-template #priceErrorTip let-control>
+            <ng-container *ngIf="control.hasError('required')"> Το πεδίο "Τιμή" είναι απαραίτητο </ng-container>
+        </ng-template>
+    </nz-form-item>
+
+    <nz-form-item>
+        <nz-form-label [nzSpan]="7" nzRequired>Περιγραφή προϊόντος</nz-form-label>
+        <nz-form-control [nzSpan]="12" [nzErrorTip]="descriptionErrorTpl">
+            <textarea nz-input formControlName="description" placeholder="Περιγραφή"></textarea>
+        </nz-form-control>
+        <ng-template #descriptionErrorTpl let-control>
+            <ng-container *ngIf="control.hasError('required')"> Το πεδίο "Περιγραφή" είναι απαραίτητ </ng-container>
+        </ng-template>
+    </nz-form-item>
+
+    <nz-form-item>
+        <label nz-checkbox formControlName="public">Δημοσίευση</label>
+    </nz-form-item>
+</form>

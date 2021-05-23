@@ -21,8 +21,12 @@ import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
+import { NzTableModule } from 'ng-zorro-antd/table';
+import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 
 const ngZorroDeps = [
+    NzCheckboxModule,
+    NzTableModule,
     NzTypographyModule,
     NzInputNumberModule,
     NzSelectModule,
