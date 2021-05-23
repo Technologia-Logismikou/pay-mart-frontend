@@ -15,8 +15,20 @@ import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzEmptyModule } from 'ng-zorro-antd/empty';
+import { NzListModule } from 'ng-zorro-antd/list';
+import { NzModalModule } from 'ng-zorro-antd/modal';
+import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
+import { NzSelectModule } from 'ng-zorro-antd/select';
+import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
+import { NzTypographyModule } from 'ng-zorro-antd/typography';
 
 const ngZorroDeps = [
+    NzTypographyModule,
+    NzInputNumberModule,
+    NzSelectModule,
+    NzToolTipModule,
+    NzModalModule,
+    NzListModule,
     NzFormModule,
     NzInputModule,
     NzButtonModule,

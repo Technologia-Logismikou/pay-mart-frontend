@@ -10,9 +10,10 @@ import { CategoriesComponent } from './categories/categories.component';
 import { AppearanceComponent } from './appearance/appearance.component';
 import { MainComponent } from './main/main.component';
 import { DeliveryZonesComponent } from './delivery-zones/delivery-zones.component';
+import { DeliveryZonesFormModalComponent } from './delivery-zones/delivery-zones-form-modal/delivery-zones-form-modal.component';
 
 @NgModule({
-    declarations: [DashboardComponent, OrdersComponent, ProductsComponent, CategoriesComponent, AppearanceComponent, MainComponent, DeliveryZonesComponent],
+    declarations: [DashboardComponent, OrdersComponent, ProductsComponent, CategoriesComponent, AppearanceComponent, MainComponent, DeliveryZonesComponent, DeliveryZonesFormModalComponent],
     imports: [CommonModule, DashboardRoutingModule, SharedModule],
 })
 export class DashboardModule {}

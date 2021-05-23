@@ -1,0 +1,47 @@
+<form [formGroup]="shippingZoneForm">
+    <nz-form-item>
+        <nz-form-label [nzSpan]="7" nzRequired>Όνομα Ζώνης</nz-form-label>
+        <nz-form-control [nzSpan]="12" [nzErrorTip]="nameErrorTpl">
+            <input nz-input formControlName="name" placeholder="Όνομα" />
+            <ng-template #nameErrorTpl let-control>
+                <ng-container *ngIf="control.hasError('required')"> Το πεδίο "Όνομα" είναι απαραίτητ </ng-container>
+            </ng-template>
+        </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+        <nz-form-label [nzSpan]="7" nzRequired>Νομοί</nz-form-label>
+        <nz-form-control [nzSpan]="12" [nzErrorTip]="countyErrorTpl">
+            <nz-select
+                [nzMaxTagCount]="3"
+                [nzMaxTagPlaceholder]="tagPlaceHolder"
+                nzMode="multiple"
+                nzPlaceHolder="Δίαλεξε Νομούς"
+                formControlName="counties"
+            >
+                <nz-option *ngFor="let county of counties" [nzLabel]="county" [nzValue]="county"></nz-option>
+            </nz-select>
+            <ng-template #tagPlaceHolder let-selectedList> and {{ selectedList.length }} more selected </ng-template>
+        </nz-form-control>
+        <ng-template #countyErrorTpl let-control>
+            <ng-container *ngIf="control.hasError('required')"> Το πεδίο "Νομοί" είναι απαραίτητ </ng-container>
+        </ng-template>
+    </nz-form-item>
+
+    <nz-form-item>
+        <nz-form-label [nzSpan]="7" nzRequired>Τιμή</nz-form-label>
+        <nz-form-control [nzSpan]="12" [nzErrorTip]="rateErrorTip">
+            <nz-input-number
+                formControlName="rate"
+                [nzMin]="0"
+                [nzStep]="0.01"
+                [nzFormatter]="euroFormatter"
+                [nzParser]="euroParser"
+            ></nz-input-number>
+        </nz-form-control>
+
+        <ng-template #rateErrorTip let-control>
+            <ng-container *ngIf="control.hasError('required')"> Το πεδίο "Τιμή" είναι απαραίτητο </ng-container>
+        </ng-template>
+    </nz-form-item>
+</form>
