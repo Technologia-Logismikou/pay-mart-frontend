@@ -61,10 +61,14 @@ nz-content {
     background-color: #e4e4e4;
 
     .route-wrapper {
+        min-height: 100%;
         box-shadow: var(--tw-shadow);
     }
 }
 
 nz-footer {
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: white;
 }

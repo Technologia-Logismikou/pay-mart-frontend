@@ -25,6 +25,10 @@
                 (click)="isCollapsed = !isCollapsed"
             ></i>
 
+            <div *ngIf="isCollapsed" class="logo-wrapper">
+                <img src="assets/logo_full.png" width="100" alt="" class="logo no-select" />
+            </div>
+
             <div class="context-menu">
                 <a class="item" nz-dropdown [nzDropdownMenu]="languageMenu" nzTrigger="click">
                     <i style="font-size: 20px" nz-icon nzType="global" nzTheme="outline"></i>
@@ -68,6 +72,26 @@
                 <router-outlet></router-outlet>
             </nz-card>
         </nz-content>
-        <nz-footer>Paymart © {{ year }}</nz-footer>
+        <nz-footer>
+            <div>
+                <a href="tel:+306999999999" nz-tooltip nzTooltipTitle="Κάλεσε το support">
+                    <i style="font-size: 20px" nz-icon nzType="phone" nzTheme="outline"></i>
+                </a>
+            </div>
+
+            <div>
+                <strong> Paymart © {{ year }} </strong>
+            </div>
+
+            <div>
+                <a
+                    nz-tooltip
+                    nzTooltipTitle="Στείλε email στο support"
+                    href="mailto:mailto:support@paymart.gr?subject=Help! Δεν ξερω πως ..."
+                >
+                    <i style="font-size: 20px" nz-icon nzType="mail" nzTheme="outline"></i>
+                </a>
+            </div>
+        </nz-footer>
     </nz-layout>
 </nz-layout>

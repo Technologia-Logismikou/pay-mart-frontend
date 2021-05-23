@@ -1,1 +1,46 @@
-<p>delivery-zones works!</p>
+<nz-page-header
+    class="site-page-header"
+    nzBackIcon
+    nzTitle="Ζώνες Αποστολής"
+    nzSubtitle="Επεξεργάσου τις ζώνες αποστολής."
+>
+    <nz-page-header-extra>
+        <button (click)="createShippingZone()" nz-button nzType="primary">
+            <i nz-icon [nzType]="'plus'"></i> Δημιουργία
+        </button>
+    </nz-page-header-extra>
+</nz-page-header>
+
+<div class="content">
+    <br />
+    <p nz-typography nzType="secondary">
+        Δημιούργησε και επεξεργάσου τις τιμές για τις ζώνες αποστολής οπως εσύ τις ορίσεις και εχεις συνεννοηθεί με την
+        ταχυμεταφορική σου!
+    </p>
+    <br />
+    <h3 *ngIf="!shippingZones.length">Διαθέσιμες ζώνες</h3>
+
+    <nz-empty
+        *ngIf="!shippingZones.length"
+        [nzNotFoundContent]="'Δεν υπάρχουν ζώνες αποστολής... Δημιούργησε την πρώτη!'"
+        [nzNotFoundFooter]="footerTemplate"
+    ></nz-empty>
+
+    <ng-template #footerTemplate>
+        <button nz-button nzType="primary"><i nz-icon nzType="plus"></i> Δημιουργία</button>
+    </ng-template>
+
+    <ul nz-list [nzDataSource]="shippingZones" *ngIf="shippingZones.length" nzBordered nzSize="large">
+        <nz-list-header>Διαθέσιμες ζώνες</nz-list-header>
+        <li nz-list-item *ngFor="let zone of shippingZones" nzNoFlex>
+            <ul nz-list-item-actions>
+                <nz-list-item-action>
+                    <a (click)="editShippingZone(zone)"><i nz-icon [nzType]="'edit'"></i> Επεξεργασία</a>
+                </nz-list-item-action>
+            </ul>
+            <strong>
+                {{ zone.name }}
+            </strong>
+        </li>
+    </ul>
+</div>
