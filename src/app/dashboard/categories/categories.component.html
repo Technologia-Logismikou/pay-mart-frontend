@@ -1,1 +1,66 @@
-<p>categories works!</p>
+<nz-page-header
+    class="site-page-header"
+    nzBackIcon
+    nzTitle="Κατηγορίες"
+    nzSubtitle="Επεξεργάσου τις κατηγορίες προϊόντων."
+>
+    <nz-page-header-extra>
+        <button (click)="createCategory()" nz-button nzType="primary">
+            <i nz-icon [nzType]="'plus'"></i> Δημιουργία
+        </button>
+    </nz-page-header-extra>
+</nz-page-header>
+
+<div class="content">
+    <br />
+    <p nz-typography nzType="secondary">
+        Δημιούργησε και επεξεργάσου τις κατηγορίες για τα προϊόντα σου οπως για καλύτερη οργάνωση στο ψηφιακό σου
+        κατάστημα
+    </p>
+    <br />
+    <h3 *ngIf="!categories.length">Διαθέσημες κατηγορίες</h3>
+
+    <nz-empty
+        *ngIf="!categories.length"
+        [nzNotFoundContent]="'Δεν κατηγορίες... Δημιούργησε την πρώτη!'"
+        [nzNotFoundFooter]="footerTemplate"
+    ></nz-empty>
+
+    <ng-template #footerTemplate>
+        <button nz-button nzType="primary"><i nz-icon nzType="plus"></i> Δημιουργία</button>
+    </ng-template>
+
+    <nz-table #expandTable [nzData]="listOfMapData" nzTableLayout="fixed">
+        <thead>
+            <tr>
+                <th>Όνομα</th>
+                <th>Ενέργειες</th>
+            </tr>
+        </thead>
+        <tbody>
+            <ng-container *ngFor="let data of expandTable.data">
+                <ng-container *ngFor="let item of mapOfExpandedData[data.key]">
+                    <tr *ngIf="(item.parent && item.parent.expand) || !item.parent">
+                        <td
+                            [nzIndentSize]="item.level! * 20"
+                            [nzShowExpand]="!!item.children"
+                            [(nzExpand)]="item.expand"
+                            (nzExpandChange)="collapse(mapOfExpandedData[data.key], item, $event)"
+                        >
+                            {{ item.name }}
+                        </td>
+                        <td>
+                            <a>
+                                <span> <i nz-icon nzType="edit" nzTheme="outline"></i> Διαγραφή </span>
+                            </a>
+                            <nz-divider nzType="vertical"></nz-divider>
+                            <a>
+                                <span> <i nz-icon nzType="delete" nzTheme="outline"></i> Διαγραφή </span>
+                            </a>
+                        </td>
+                    </tr>
+                </ng-container>
+            </ng-container>
+        </tbody>
+    </nz-table>
+</div>
