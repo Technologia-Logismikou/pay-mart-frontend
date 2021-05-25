@@ -42,11 +42,47 @@ export class ProductsComponent implements OnInit {
             url: 'pink-kolie',
             category: 'koliez',
         },
+        {
+            name: 'Red Kolie',
+            description: 'Κόκκινο κολίε που κανει τα πάντα',
+            photos: [''],
+            price: 36.5,
+            public: true,
+            url: 'pink-kolie',
+            category: 'koliez',
+        },
+        {
+            name: 'Blue Kolie',
+            description: 'Μπλέ κολίε που κανει τα πάντα',
+            photos: [''],
+            price: 36.5,
+            public: true,
+            url: 'pink-kolie',
+            category: 'koliez',
+        },
+        {
+            name: 'Black Kolie',
+            description: 'Μαύρο κολίε που κανει τα πάντα',
+            photos: [''],
+            price: 36.5,
+            public: true,
+            url: 'pink-kolie',
+            category: 'koliez',
+        },
+        {
+            name: 'Silver Kolie',
+            description: 'Ασημί κολίε που κανει τα πάντα',
+            photos: [''],
+            price: 36.5,
+            public: true,
+            url: 'pink-kolie',
+            category: 'koliez',
+        },
     ];
 
     constructor(private readonly modalService: NzModalService) {}
 
-    ngOnInit(): void {}
+    public ngOnInit(): void {}
 
     public createNewProduct(): void {
         this.modalService.create({
@@ -57,6 +93,19 @@ export class ProductsComponent implements OnInit {
             },
             nzOnOk: () => console.log('ok'),
             nzOnCancel: () => console.log('cancel'),
+        });
+    }
+
+    public deleteProduct(e: MouseEvent, product: Product): void {
+        e.stopImmediatePropagation();
+
+        this.modalService.confirm({
+            nzTitle: 'Θες σίγουρα να διαγράψεις το προϊόν',
+            nzContent: 'Πατώντας ναι θα διαγραφεί το πρϊόν για πάντα',
+            nzOkType: 'primary',
+            nzOkDanger: true,
+            nzOnOk: () => (this.products = this.products.filter((pr) => pr.name !== product.name)),
+            nzOnCancel: () => console.log('Cancel'),
         });
     }
 }

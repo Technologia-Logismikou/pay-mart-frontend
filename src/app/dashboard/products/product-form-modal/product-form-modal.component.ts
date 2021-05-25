@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Product } from 'src/app/helpers/models/product.model';
+import { ProductValidators } from '../product-form.validator';
 
 @Component({
     selector: 'app-product-form-modal',
@@ -25,7 +26,10 @@ export class ProductFormModalComponent implements OnInit {
             ]),
             price: this.formBuilder.control(this.type === 'create' ? 0 : this.product.price, [Validators.required]),
             public: this.formBuilder.control(this.type === 'create', [Validators.required]),
-            url: this.formBuilder.control(this.type === 'create' ? '' : this.product.url, [Validators.required]),
+            url: this.formBuilder.control(this.type === 'create' ? '' : this.product.url, [
+                Validators.required,
+                ProductValidators.slugValidator,
+            ]),
         });
 
         this.productForm.valueChanges.subscribe(console.log);

@@ -10,6 +10,19 @@
     </nz-form-item>
 
     <nz-form-item>
+        <nz-form-label [nzSpan]="7" nzRequired>Url Προϊόντος</nz-form-label>
+        <nz-form-control [nzSpan]="12" [nzErrorTip]="urlErrorTpl">
+            <input nz-input formControlName="url" placeholder="URL Προϊόντος" />
+        </nz-form-control>
+        <ng-template #urlErrorTpl let-control>
+            <ng-container *ngIf="control.hasError('required')"> Το πεδίο "URL" είναι απαραίτητ </ng-container>
+            <ng-container *ngIf="control.hasError('slugError')">
+                Το πεδίο url πρέπει να είναι της μορφής "proion-kolie" ή "kolie"
+            </ng-container>
+        </ng-template>
+    </nz-form-item>
+
+    <nz-form-item>
         <nz-form-label [nzSpan]="7" nzRequired>Τιμή</nz-form-label>
         <nz-form-control [nzSpan]="12" [nzErrorTip]="priceErrorTip">
             <nz-input-number

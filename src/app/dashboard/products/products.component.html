@@ -22,7 +22,7 @@
         <button nz-button nzType="primary"><i nz-icon nzType="plus"></i> Δημιουργία</button>
     </ng-template>
 
-    <nz-table #basicTable [nzData]="products" nzPageSize="5">
+    <nz-table *ngIf="products.length" #basicTable [nzData]="products" nzPageSize="4">
         <thead>
             <tr>
                 <th [nzSortFn]="nameCmpFn" [nzSortOrder]="null" [nzSortDirections]="['ascend', 'descend', null]">
@@ -31,8 +31,9 @@
                 <th [nzSortFn]="priceCmpFn" [nzSortOrder]="null" [nzSortDirections]="['ascend', 'descend', null]">
                     Τιμή
                 </th>
-                <th>Κατάσταση</th>
+                <th>URL</th>
                 <th>Περιγραφή</th>
+                <th>Κατάσταση</th>
                 <th>Ενέργειες</th>
             </tr>
         </thead>
@@ -40,17 +41,20 @@
             <tr *ngFor="let data of basicTable.data">
                 <td>{{ data.name }}</td>
                 <td>{{ data.price }}</td>
+                <td>{{ data.url }}</td>
+                <td>{{ data.description }}</td>
                 <td *ngIf="!data.public">
                     <span nz-typography nzType="danger">Όχι δημόσιο</span>
                 </td>
                 <td *ngIf="data.public">
                     <span nz-typography nzType="success">Δημόσιο</span>
                 </td>
-                <td>{{ data.description }}</td>
                 <td>
-                    <a>Επεξεργασία</a>
+                    <a><i nz-icon nzType="edit" nzTheme="outline"></i> Επεξεργασία</a>
                     <nz-divider nzType="vertical"></nz-divider>
-                    <a>Διαγραφή</a>
+                    <a (click)="deleteProduct($event, data)"
+                        ><i nz-icon nzType="delete" nzTheme="outline"></i> Διαγραφή</a
+                    >
                 </td>
             </tr>
         </tbody>
