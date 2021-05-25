@@ -1,1 +1,62 @@
-<p>products works!</p>
+<nz-page-header class="site-page-header" nzBackIcon nzTitle="Προϊόντα" nzSubtitle="Επεξεργάσου τα προϊόντα">
+    <nz-page-header-extra>
+        <button *ngIf="products.length" (click)="createNewProduct()" nz-button nzType="primary">
+            <i nz-icon [nzType]="'plus'"></i> Δημιουργία
+        </button>
+    </nz-page-header-extra>
+</nz-page-header>
+
+<div class="content">
+    <br />
+    <p nz-typography nzType="secondary">Δημιούργησε και επεξεργάσου τα προϊόντα του ψηφιακού καταστήματος</p>
+    <br />
+    <h3 *ngIf="!products.length">Διαθέσιμα προϊόντα</h3>
+
+    <nz-empty
+        *ngIf="!products.length"
+        [nzNotFoundContent]="'Δεν υπάρχουν διαθέσιμα προϊόντα... Δημιούργησε το πρώτο!'"
+        [nzNotFoundFooter]="footerTemplate"
+    ></nz-empty>
+
+    <ng-template #footerTemplate>
+        <button nz-button nzType="primary"><i nz-icon nzType="plus"></i> Δημιουργία</button>
+    </ng-template>
+
+    <nz-table *ngIf="products.length" #basicTable [nzData]="products" nzPageSize="4">
+        <thead>
+            <tr>
+                <th [nzSortFn]="nameCmpFn" [nzSortOrder]="null" [nzSortDirections]="['ascend', 'descend', null]">
+                    Όνομα
+                </th>
+                <th [nzSortFn]="priceCmpFn" [nzSortOrder]="null" [nzSortDirections]="['ascend', 'descend', null]">
+                    Τιμή
+                </th>
+                <th>URL</th>
+                <th>Περιγραφή</th>
+                <th>Κατάσταση</th>
+                <th>Ενέργειες</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let data of basicTable.data">
+                <td>{{ data.name }}</td>
+                <td>{{ data.price }}</td>
+                <td>{{ data.url }}</td>
+                <td>{{ data.description }}</td>
+                <td *ngIf="!data.public">
+                    <span nz-typography nzType="danger">Όχι δημόσιο</span>
+                </td>
+                <td *ngIf="data.public">
+                    <span nz-typography nzType="success">Δημόσιο</span>
+                </td>
+                <td>
+                    <a><i nz-icon nzType="edit" nzTheme="outline"></i> Επεξεργασία</a>
+                    <nz-divider nzType="vertical"></nz-divider>
+                    <a (click)="deleteProduct($event, data)"
+                        ><i nz-icon nzType="delete" nzTheme="outline"></i> Διαγραφή</a
+                    >
+                </td>
+            </tr>
+        </tbody>
+    </nz-table>
+</div>
