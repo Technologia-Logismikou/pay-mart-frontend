@@ -1,0 +1,25 @@
+<form [formGroup]="categoryForm">
+    <nz-form-item>
+        <nz-form-label [nzSpan]="7" nzRequired>Όνομα κατηγορίας</nz-form-label>
+        <nz-form-control [nzSpan]="12" [nzErrorTip]="nameErrorTpl">
+            <input nz-input formControlName="name" placeholder="Όνομα" />
+            <ng-template #nameErrorTpl let-control>
+                <ng-container *ngIf="control.hasError('required')"> Το πεδίο "Όνομα" είναι απαραίτητ </ng-container>
+            </ng-template>
+        </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+        <nz-form-label [nzSpan]="7" nzRequired>Γονεική κατηγορία</nz-form-label>
+        <nz-form-control [nzSpan]="12" [nzErrorTip]="parentErrorTpl">
+            <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Διαλέξτε γονεική κατηγορία" formControlName="parent">
+                <nz-option *ngFor="let category of categoryList" [nzLabel]="category" [nzValue]="category"></nz-option>
+            </nz-select>
+            <ng-template #parentErrorTpl let-control>
+                <ng-container *ngIf="control.hasError('required')">
+                    Το πεδίο "Γονική Κατηγορία" είναι απαραίτητ
+                </ng-container>
+            </ng-template>
+        </nz-form-control>
+    </nz-form-item>
+</form>
