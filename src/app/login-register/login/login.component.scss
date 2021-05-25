@@ -1,0 +1,15 @@
+.container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #e4e4e4;
+
+    .login-form {
+        width: 400px;
+        padding: 30px;
+        background-color: white;
+        box-shadow: var(--tw-shadow);
+    }
+}
