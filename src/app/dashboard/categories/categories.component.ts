@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NzModalService } from 'ng-zorro-antd/modal';
+import { CategoryFormModalComponent } from './category-form-modal/category-form-modal.component';
 import { categoriesToListOfMapData, convertTreeToList, TreeNodeInterface } from './category-tree-table-helpers';
 
 @Component({
@@ -45,7 +47,7 @@ export class CategoriesComponent implements OnInit {
             ],
         },
     ];
-    constructor() {}
+    constructor(private readonly modalService: NzModalService) {}
 
     listOfMapData: TreeNodeInterface[] = [];
     mapOfExpandedData: { [key: string]: TreeNodeInterface[] } = {};
@@ -56,11 +58,9 @@ export class CategoriesComponent implements OnInit {
         this.listOfMapData.forEach((item) => {
             this.mapOfExpandedData[item.key] = convertTreeToList(item);
         });
-
-        console.log(this.nestedCategoriesToCategoryList(this.categories));
     }
 
-    private nestedCategoriesToCategoryList(categories: any[]): any[] {
+    private nestedCategoriesToCategoryList(categories: any[]): string[] {
         let names: string[] = [];
 
         for (let i = 0; i < categories.length; i++) {
@@ -73,5 +73,16 @@ export class CategoriesComponent implements OnInit {
         return names;
     }
 
-    public createCategory(): void {}
+    public createCategory(): void {
+        this.modalService.create({
+            nzTitle: 'Δημιουργία Κατηγορίας',
+            nzContent: CategoryFormModalComponent,
+            nzComponentParams: {
+                type: 'create',
+                categoryList: this.nestedCategoriesToCategoryList(this.categories),
+            },
+            nzOnOk: () => console.log('ok'),
+            nzOnCancel: () => console.log('cancel'),
+        });
+    }
 }
