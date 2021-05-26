@@ -13,9 +13,10 @@ import { DeliveryZonesComponent } from './delivery-zones/delivery-zones.componen
 import { DeliveryZonesFormModalComponent } from './delivery-zones/delivery-zones-form-modal/delivery-zones-form-modal.component';
 import { ProductFormModalComponent } from './products/product-form-modal/product-form-modal.component';
 import { CategoryFormModalComponent } from './categories/category-form-modal/category-form-modal.component';
+import { OrderDetailsComponent } from './orders/order-details/order-details.component';
 
 @NgModule({
-    declarations: [DashboardComponent, OrdersComponent, ProductsComponent, CategoriesComponent, AppearanceComponent, MainComponent, DeliveryZonesComponent, DeliveryZonesFormModalComponent, ProductFormModalComponent, CategoryFormModalComponent],
+    declarations: [DashboardComponent, OrdersComponent, ProductsComponent, CategoriesComponent, AppearanceComponent, MainComponent, DeliveryZonesComponent, DeliveryZonesFormModalComponent, ProductFormModalComponent, CategoryFormModalComponent, OrderDetailsComponent],
     imports: [CommonModule, DashboardRoutingModule, SharedModule],
 })
 export class DashboardModule {}
