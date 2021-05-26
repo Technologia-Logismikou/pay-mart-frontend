@@ -1,1 +1,39 @@
-<p>orders works!</p>
+<nz-page-header class="site-page-header" nzBackIcon nzTitle="Παραγγελίες" nzSubtitle="Οι παραγγελίες του καταστήματος">
+</nz-page-header>
+
+<div class="content">
+    <br />
+    <p nz-typography nzType="secondary">Όλες οι παραγγελίες του καταστήματος σου φαίνονται εδώ</p>
+    <br />
+    <nz-empty
+        *ngIf="!orders.length"
+        [nzNotFoundContent]="'Δεν έχουν πραγματοποιηθεί ακόμα παραγγελίες! '"
+        [nzNotFoundFooter]="footerTemplate"
+    ></nz-empty>
+
+    <nz-table *ngIf="orders.length" #basicTable [nzData]="orders" nzPageSize="4">
+        <thead>
+            <tr>
+                <th>Πελάτης</th>
+                <th>Νομός</th>
+                <th>Διεύθηνση Χρέωσης</th>
+                <th>Διεύθηνση αποστολής</th>
+                <th>Προϊόντα</th>
+                <th>Κατάσταση</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let data of basicTable.data" [routerLink]="[data.customer]">
+                <td>{{ data.customer }}</td>
+                <td>{{ data.county }}</td>
+                <td>{{ data.billingAddress }}</td>
+                <td>{{ data.shippingAddress }}</td>
+                <td>{{ data.products.join(', ') }}</td>
+
+                <td>
+                    <span nz-typography nzType="warning">Σε επεξεργασία</span>
+                </td>
+            </tr>
+        </tbody>
+    </nz-table>
+</div>

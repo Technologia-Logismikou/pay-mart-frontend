@@ -5,6 +5,7 @@ import { CategoriesComponent } from './categories/categories.component';
 import { DashboardComponent } from './dashboard.component';
 import { DeliveryZonesComponent } from './delivery-zones/delivery-zones.component';
 import { MainComponent } from './main/main.component';
+import { OrderDetailsComponent } from './orders/order-details/order-details.component';
 import { OrdersComponent } from './orders/orders.component';
 import { ProductsComponent } from './products/products.component';
 
@@ -24,7 +25,16 @@ const routes: Routes = [
             },
             {
                 path: 'orders',
-                component: OrdersComponent,
+                children: [
+                    {
+                        path: '',
+                        component: OrdersComponent,
+                    },
+                    {
+                        path: ':id',
+                        component: OrderDetailsComponent,
+                    },
+                ],
             },
             {
                 path: 'categories',
