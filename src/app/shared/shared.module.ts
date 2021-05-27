@@ -25,6 +25,7 @@ import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
 import { NzDescriptionsModule } from 'ng-zorro-antd/descriptions';
+import { NzUploadModule } from 'ng-zorro-antd/upload';
 
 const ngZorroDeps = [
     NzCheckboxModule,
@@ -50,6 +51,7 @@ const ngZorroDeps = [
     NzEmptyModule,
     NzBreadCrumbModule,
     NzDescriptionsModule,
+    NzUploadModule,
 ];
 
 @NgModule({
