@@ -88,6 +88,9 @@
     <span nz-typography nzType="secondary">Άλλαξε την εμφάνιση του καταστήματος σου, αλλάζοντας το κύριο χρώμα</span>
 </p>
 
+<button (click)="changeColor()" nz-button><i nz-icon nzType="bg-colors" nzTheme="outline"></i>Αλλαγή</button>
+<input nz-input [(colorPicker)]="color" [style.background]="color" class="color-picker" [cpOKButton]="true" />
+
 <nz-divider nzText="Logo"></nz-divider>
 <p>
     <span nz-typography nzType="secondary"

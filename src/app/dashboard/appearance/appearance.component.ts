@@ -20,6 +20,8 @@ export class AppearanceComponent implements OnInit {
     };
     public storeForm: FormGroup;
 
+    public color: string = '#6934ff';
+
     constructor(private readonly formBuilder: FormBuilder, private readonly message: NzMessageService) {}
 
     public ngOnInit(): void {
@@ -31,8 +33,6 @@ export class AppearanceComponent implements OnInit {
             subdomain: this.formBuilder.control(this.store?.subdomain || '', [Validators.required]),
             website: this.formBuilder.control(this.store?.website || '', []),
         });
-
-        this.storeForm.valueChanges.subscribe(console.log);
     }
 
     public changeGeneralData(): void {
@@ -54,5 +54,11 @@ export class AppearanceComponent implements OnInit {
         // To Do -> Submit value to api
         this.message.success('Τα στοιχεία σου άλλαξαν με επιτυχία');
         this.storeForm.markAsPristine();
+    }
+
+    public changeColor(): void {
+        // To Do -> Check if value has changed and submit to backend
+
+        console.log(this.color);
     }
 }
