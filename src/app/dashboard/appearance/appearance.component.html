@@ -5,3 +5,92 @@
     nzSubtitle="Άλλαξε την εμφάνιση του ψηφιακού σου καταστήματος"
 >
 </nz-page-header>
+
+<nz-divider nzText="Πληροφορίες"></nz-divider>
+
+<p>
+    <span nz-typography nzType="secondary">Επεξεργάσου τις γενικές πληροφορίες του καταστήματος σου</span>
+</p>
+
+<div class="info-content">
+    <form [formGroup]="storeForm" class="store-form" (ngSubmit)="changeGeneralData()">
+        <nz-form-item>
+            <nz-form-label nzRequired>Όνομα καταστήματος</nz-form-label>
+            <nz-form-control [nzErrorTip]="nameErrorTip">
+                <input nz-input formControlName="name" placeholder="Όνομα καταστήματος" />
+            </nz-form-control>
+            <ng-template #nameErrorTip let-control>
+                <ng-container *ngIf="control.hasError('required')">
+                    Το πεδίο "Όνομα καταστήματος" είναι απαραίτητ
+                </ng-container>
+            </ng-template>
+        </nz-form-item>
+
+        <nz-form-item>
+            <nz-form-label nzRequired>Διεύθηνση</nz-form-label>
+            <nz-form-control [nzErrorTip]="addressErrorTip">
+                <input nz-input formControlName="address" placeholder="Διεύθηνση καταστήματος" />
+            </nz-form-control>
+            <ng-template #addressErrorTip let-control>
+                <ng-container *ngIf="control.hasError('required')">
+                    Το πεδίο "Διεύθηνση καταστήματος" είναι απαραίτητ
+                </ng-container>
+            </ng-template>
+        </nz-form-item>
+
+        <nz-form-item>
+            <nz-form-label nzRequired>Τηλέφωνο</nz-form-label>
+            <nz-form-control [nzErrorTip]="phoneErrorTip">
+                <input nz-input formControlName="phone" placeholder="Τηλέφωνο καταστήματος" />
+            </nz-form-control>
+            <ng-template #phoneErrorTip let-control>
+                <ng-container *ngIf="control.hasError('required')"> Το πεδίο "Τηλέφωνο" είναι απαραίτητ </ng-container>
+            </ng-template>
+        </nz-form-item>
+
+        <nz-form-item>
+            <nz-form-label nzRequired>Email</nz-form-label>
+            <nz-form-control [nzErrorTip]="emailErrorTip">
+                <input nz-input formControlName="email" placeholder="Email καταστήματος" />
+            </nz-form-control>
+            <ng-template #emailErrorTip let-control>
+                <ng-container *ngIf="control.hasError('required')"> Το πεδίο "Email" είναι απαραίτητ </ng-container>
+            </ng-template>
+        </nz-form-item>
+
+        <nz-form-item>
+            <nz-form-label nzRequired>Subdomain</nz-form-label>
+            <nz-form-control [nzErrorTip]="subdomainErrorTip">
+                <input nz-input formControlName="subdomain" placeholder="Subdomain καταστήματος" />
+            </nz-form-control>
+            <ng-template #subdomainErrorTip let-control>
+                <ng-container *ngIf="control.hasError('required')"> Το πεδίο "Subdomain" είναι απαραίτητ </ng-container>
+            </ng-template>
+        </nz-form-item>
+
+        <nz-form-item>
+            <nz-form-label nzRequired>Website</nz-form-label>
+            <nz-form-control [nzErrorTip]="websiteErrorTip">
+                <input nz-input formControlName="website" placeholder="Website καταστήματος" />
+            </nz-form-control>
+            <ng-template #websiteErrorTip let-control> </ng-template>
+        </nz-form-item>
+
+        <button type="submit" nz-button nzBlock nzType="primary" [disabled]="storeForm.pristine || storeForm.invalid">
+            Αλλαγή
+        </button>
+    </form>
+</div>
+
+<nz-divider nzText="Χρώμα"></nz-divider>
+
+<p>
+    <span nz-typography nzType="secondary">Άλλαξε την εμφάνιση του καταστήματος σου, αλλάζοντας το κύριο χρώμα</span>
+</p>
+
+<nz-divider nzText="Logo"></nz-divider>
+<p>
+    <span nz-typography nzType="secondary"
+        >Άλλαξε την εμφάνιση του καταστήματος σου, αλλάζοντας το logo που εμφανίζεται στο κατάστημα</span
+    >
+</p>
