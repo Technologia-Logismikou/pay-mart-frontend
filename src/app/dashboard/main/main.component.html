@@ -1,1 +1,54 @@
-<p>main works!</p>
+<h1>Πίνακας Ελέγχου</h1>
+
+<div class="content">
+    <div class="info">
+        <div class="cards">
+            <nz-card style="width: 300px">
+                <h3>Best Seller</h3>
+                <p>roz-kolies</p>
+                <h1 [style.color]="'#6934ff'">90$</h1>
+            </nz-card>
+
+            <nz-card style="width: 300px">
+                <h2>Όλα τα προϊόντα</h2>
+                <br />
+                <h3 [style.color]="'#6934ff'">
+                    Επεξεργασία <span><i nz-icon nzType="arrow-right" nzTheme="outline"></i></span>
+                </h3>
+            </nz-card>
+        </div>
+
+        <div class="latest-orders">
+            <h3>Τελευταίες παραγγελίες</h3>
+
+            <ul nz-list [nzDataSource]="['lefko-kolies', 'roz-kolies', 'lefko-kolies']" nzBordered nzSize="small">
+                <li nz-list-item *ngFor="let item of ['lefko-kolies', 'roz-kolies', 'lefko-kolies']" nzNoFlex>
+                    <ul nz-list-item-actions>
+                        <nz-list-item-action>
+                            <a><i nz-icon nzType="arrow-right" nzTheme="outline"></i></a>
+                        </nz-list-item-action>
+                    </ul>
+                    {{ item }}
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="graph">
+        <div style="display: flex; align-items: center; justify-content: center; flex-direction: column">
+            <h2>Συνολικά κέρδη</h2>
+            <h1><strong>10Κ</strong></h1>
+        </div>
+        <canvas
+            baseChart
+            [datasets]="lineChartData"
+            [labels]="lineChartLabels"
+            [options]="lineChartOptions"
+            [colors]="lineChartColors"
+            [legend]="lineChartLegend"
+            [chartType]="lineChartType"
+            [plugins]="lineChartPlugins"
+        >
+        </canvas>
+    </div>
+</div>
