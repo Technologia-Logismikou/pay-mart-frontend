@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { ColorPickerModule } from 'ngx-color-picker';
+import { ChartsModule } from 'ng2-charts';
 
 import { DashboardComponent } from './dashboard.component';
 import { OrdersComponent } from './orders/orders.component';
@@ -30,6 +31,6 @@ import { OrderDetailsComponent } from './orders/order-details/order-details.comp
         CategoryFormModalComponent,
         OrderDetailsComponent,
     ],
-    imports: [CommonModule, DashboardRoutingModule, SharedModule, ColorPickerModule],
+    imports: [CommonModule, DashboardRoutingModule, SharedModule, ColorPickerModule, ChartsModule],
 })
 export class DashboardModule {}
