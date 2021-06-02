@@ -26,6 +26,7 @@ import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
 import { NzDescriptionsModule } from 'ng-zorro-antd/descriptions';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
+import { LoadingComponent } from './components/loading/loading.component';
 
 const ngZorroDeps = [
     NzCheckboxModule,
@@ -55,8 +56,8 @@ const ngZorroDeps = [
 ];
 
 @NgModule({
-    declarations: [],
+    declarations: [LoadingComponent],
     imports: [...ngZorroDeps, CommonModule, ReactiveFormsModule, FormsModule],
-    exports: [...ngZorroDeps, ReactiveFormsModule, FormsModule],
+    exports: [...ngZorroDeps, ReactiveFormsModule, FormsModule, LoadingComponent],
 })
 export class SharedModule {}

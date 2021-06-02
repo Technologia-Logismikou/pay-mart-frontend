@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { LoadingComponent } from './shared/components/loading/loading.component';
 
 const routes: Routes = [
     {
@@ -9,6 +10,10 @@ const routes: Routes = [
     {
         path: 'dashboard',
         loadChildren: () => import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
+    },
+    {
+        path: ':subdomain',
+        loadChildren: () => import('./store/store.module').then((m) => m.StoreModule),
     },
 ];
 
