@@ -1,0 +1,23 @@
+.content {
+    width: 100vw;
+    height: 100vh;
+
+    nz-layout {
+        nz-content {
+            .main {
+                display: flex;
+                align-items: center;
+                justify-content: space-evenly;
+                flex-wrap: wrap;
+            }
+        }
+
+        nz-header {
+            background-color: white;
+        }
+
+        nz-footer {
+            background-color: white;
+        }
+    }
+}
