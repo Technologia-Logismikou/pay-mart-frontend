@@ -1,0 +1,64 @@
+<app-loading *ngIf="loading"></app-loading>
+
+<div class="container" *ngIf="!loading">
+    <div class="main">
+        <div class="info-container">
+            <h1>{{ product }}</h1>
+        </div>
+        <div class="card-container">
+            <nz-card>
+                <form nz-form [nzLayout]="'vertical'" [formGroup]="checkoutForm" (ngSubmit)="submit()">
+                    <nz-form-item>
+                        <nz-form-label>Ε-mail</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input formControlName="email" type="email" />
+                        </nz-form-control>
+                    </nz-form-item>
+
+                    <nz-form-item>
+                        <nz-form-label>Αριθμός Κάρτας</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input formControlName="card_number" type="text" [cleave]="{ creditCard: true }" />
+                        </nz-form-control>
+                    </nz-form-item>
+
+                    <nz-form-item>
+                        <nz-form-label>CVV/Ημ. Λήξης</nz-form-label>
+                        <div style="display: flex">
+                            <nz-form-control [nzSpan]="12">
+                                <input
+                                    nz-input
+                                    formControlName="cvv"
+                                    type="text"
+                                    [cleave]="{
+                                        blocks: [3],
+                                        numericOnly: true
+                                    }"
+                                />
+                            </nz-form-control>
+                            <nz-form-control [nzSpan]="12">
+                                <input
+                                    nz-input
+                                    [cleave]="{ date: true, datePattern: ['m', 'y'] }"
+                                    formControlName="expiry_date"
+                                    type="text"
+                                />
+                            </nz-form-control>
+                        </div>
+                    </nz-form-item>
+
+                    <nz-form-item>
+                        <nz-form-label>Διεύθηνση</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input formControlName="billing_address" type="text" />
+                        </nz-form-control>
+                    </nz-form-item>
+
+                    <button nz-button nzType="primary" type="submit" nzBlock [disabled]="checkoutForm.invalid">
+                        Αγορά
+                    </button>
+                </form>
+            </nz-card>
+        </div>
+    </div>
+</div>

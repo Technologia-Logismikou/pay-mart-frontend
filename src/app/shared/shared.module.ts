@@ -27,6 +27,7 @@ import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
 import { NzDescriptionsModule } from 'ng-zorro-antd/descriptions';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
 import { LoadingComponent } from './components/loading/loading.component';
+import { NzCarouselModule } from 'ng-zorro-antd/carousel';
 
 const ngZorroDeps = [
     NzCheckboxModule,
@@ -53,6 +54,7 @@ const ngZorroDeps = [
     NzBreadCrumbModule,
     NzDescriptionsModule,
     NzUploadModule,
+    NzCarouselModule,
 ];
 
 @NgModule({

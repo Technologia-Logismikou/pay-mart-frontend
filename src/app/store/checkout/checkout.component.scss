@@ -1,0 +1,10 @@
+.container {
+    height: 100vh;
+    .main {
+        padding: 50px;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+}
