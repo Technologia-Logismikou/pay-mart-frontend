@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { NzTableFilterFn, NzTableFilterList, NzTableSortFn, NzTableSortOrder } from 'ng-zorro-antd/table';
+import { ProductService as ProductApiService } from 'src/app/core/services/api/product/product.service';
 import { Product } from 'src/app/helpers/models/product.model';
 import { ProductFormModalComponent } from './product-form-modal/product-form-modal.component';
 
@@ -25,9 +27,15 @@ export class ProductsComponent implements OnInit {
 
     public products: Product[] = [];
 
-    constructor(private readonly modalService: NzModalService) {}
+    constructor(
+        private readonly modalService: NzModalService,
+        private readonly productApi: ProductApiService,
+        private readonly message: NzMessageService
+    ) {}
 
-    public ngOnInit(): void {}
+    public async ngOnInit(): Promise<void> {
+        this.products = await this.productApi.getProducts().toPromise();
+    }
 
     public createNewProduct(): void {
         this.modalService.create({
@@ -36,7 +44,13 @@ export class ProductsComponent implements OnInit {
             nzComponentParams: {
                 type: 'create',
             },
-            nzOnOk: () => console.log('ok'),
+            nzOnOk: async (componentInstance) => {
+                const modalVal = await componentInstance.submit();
+
+                if (modalVal) {
+                    this.products = [...this.products, modalVal];
+                }
+            },
             nzOnCancel: () => console.log('cancel'),
         });
     }
@@ -49,8 +63,39 @@ export class ProductsComponent implements OnInit {
             nzContent: 'Πατώντας ναι θα διαγραφεί το πρϊόν για πάντα',
             nzOkType: 'primary',
             nzOkDanger: true,
-            nzOnOk: () => (this.products = this.products.filter((pr) => pr.name !== product.name)),
+            nzOnOk: async () => {
+                try {
+                    const apiRes = await this.productApi.delete(product.id).toPromise();
+
+                    this.message.success(`${product.name} διαγράφηκε επιτυχώς`);
+                } catch (e) {
+                    this.message.error(`Υπήρξε πρόβλημα κατα την διαγραφή του ${product.name}`);
+                } finally {
+                    this.products = this.products.filter((pr) => pr.name !== product.name);
+                }
+            },
             nzOnCancel: () => console.log('Cancel'),
+        });
+    }
+
+    public editProduct(e: MouseEvent, product: Product) {
+        e.stopImmediatePropagation();
+
+        this.modalService.create({
+            nzTitle: 'Δημιουργία Προϊόντος',
+            nzContent: ProductFormModalComponent,
+            nzComponentParams: {
+                type: 'edit',
+                product,
+            },
+            nzOnOk: async (componentInstance) => {
+                const modalVal = await componentInstance.submit();
+
+                if (modalVal) {
+                    this.products = [...this.products, modalVal];
+                }
+            },
+            nzOnCancel: () => console.log('cancel'),
         });
     }
 }
