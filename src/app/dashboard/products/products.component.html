@@ -19,7 +19,7 @@
     ></nz-empty>
 
     <ng-template #footerTemplate>
-        <button nz-button nzType="primary"><i nz-icon nzType="plus"></i> Δημιουργία</button>
+        <button (click)="createNewProduct()" nz-button nzType="primary"><i nz-icon nzType="plus"></i> Δημιουργία</button>
     </ng-template>
 
     <nz-table *ngIf="products.length" #basicTable [nzData]="products" nzPageSize="4">
