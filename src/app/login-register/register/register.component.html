@@ -1,1 +1,94 @@
-<p>register works!</p>
+<div class="content">
+    <nz-card>
+        <div class="card">
+            <nz-steps [nzCurrent]="step" nzDirection="vertical">
+                <nz-step nzTitle="Βασικά" nzDescription="Βασικές Πληροφορίες."> </nz-step>
+                <nz-step nzTitle="Επιχείρηση" nzDescription="Στοιχεία της επιχείρησης"> </nz-step>
+                <nz-step nzTitle="Λογαριασμός" nzDescription="ΑΦΜ και στοιχεια τραπέζικου λογαριασμού"></nz-step>
+            </nz-steps>
+
+            <div class="steps-content">
+                <form [formGroup]="registrationForm" (ngSubmit)="submit()">
+                    <div *ngIf="step === 0">
+                        <h1>Βασικά</h1>
+
+                        <p>Μερικές βασικές πληροφορίες σχετικά με εσένα</p>
+
+                        <nz-form-label nzRequired>Προσωπικό email</nz-form-label>
+                        <nz-form-control [nzErrorTip]="emailErrorTpl">
+                            <input nz-input formControlName="email" placeholder="Προσωπικό email" />
+                            <ng-template #emailErrorTpl let-control>
+                                <ng-container *ngIf="control.hasError('required')">
+                                    Το πεδίο "Προσωπικό Email" είναι απαραίτητ
+                                </ng-container>
+                                <ng-container *ngIf="control.hasError('email')">
+                                    Το email δεν είναι σωστής μορφής
+                                </ng-container>
+                            </ng-template>
+                        </nz-form-control>
+
+                        <nz-form-label nzRequired>Προσωπικό τηλέφωνο</nz-form-label>
+                        <nz-form-control [nzErrorTip]="phoneErrorTpl">
+                            <input nz-input formControlName="phone" placeholder="Προσωπικό τηλέφωνο" />
+                            <ng-template #phoneErrorTpl let-control>
+                                <ng-container *ngIf="control.hasError('required')">
+                                    Το πεδίο "Προσωπικό τηλέφωνο" είναι απαραίτητ
+                                </ng-container>
+                            </ng-template>
+                        </nz-form-control>
+
+                        <nz-form-label nzRequired>Κωδικός</nz-form-label>
+                        <nz-form-control [nzErrorTip]="passwordErrorTpl">
+                            <input type="password" nz-input formControlName="password" placeholder="Κωδικός" />
+                            <ng-template #passwordErrorTpl let-control>
+                                <ng-container *ngIf="control.hasError('required')">
+                                    Το πεδίο "Κωδικός" είναι απαραίτητ
+                                </ng-container>
+                            </ng-template>
+                        </nz-form-control>
+
+                        <nz-form-label nzRequired>Κωδικός Ξανά</nz-form-label>
+                        <nz-form-control [nzErrorTip]="passowrdAgainTpl">
+                            <input
+                                type="password"
+                                nz-input
+                                formControlName="passwordAgain"
+                                placeholder="Κωδικός Ξανά"
+                            />
+                            <ng-template #passowrdAgainTpl let-control>
+                                <ng-container *ngIf="control.hasError('required')">
+                                    Το πεδίο "Κωδικός Ξανα" είναι απαραίτητ
+                                </ng-container>
+                            </ng-template>
+                        </nz-form-control>
+
+                        <p>
+                            <span nzType="danger" *ngIf="registrationForm.hasError('passwordMatch')">
+                                Οι κωδικοί δεν ταιρίαζουν
+                            </span>
+                        </p>
+
+                        <button nz-button (click)="stepDown()" [disabled]="step === 0">Πίσω</button>
+                        <button nz-button nzType="primary" (click)="stepUp()">Επόμενο</button>
+                    </div>
+
+                    <div *ngIf="step === 1">
+                        <h1>Επιχείρηση</h1>
+
+                        <p>the things u need to do</p>
+                        <button nz-button (click)="stepDown()">Πίσω</button>
+                        <button nz-button nzType="primary" (click)="stepUp()">Επόμενο</button>
+                    </div>
+
+                    <div *ngIf="step === 2">
+                        <h1>Ολοκλήρωση</h1>
+
+                        <p>the things u need to do</p>
+                        <button nz-button (click)="stepDown()">Πίσω</button>
+                        <button nz-button nzType="primary" (click)="stepUp()" [disabled]="step === 2">Επόμενο</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </nz-card>
+</div>
