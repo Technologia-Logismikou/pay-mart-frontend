@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ShippingZone } from 'src/app/helpers/models/shipping-zone.model';
+import { NzMessageService } from 'ng-zorro-antd/message';
+import { ShippingZonesService as ShippingZonesApiService } from 'src/app/core/services/api/shipping-zones/shipping-zones.service';
+import { ShippingZone, ShippingZoneDto } from 'src/app/helpers/models/shipping-zone.model';
 
 @Component({
     selector: 'app-delivery-zones-form-modal',
@@ -16,7 +18,11 @@ export class DeliveryZonesFormModalComponent implements OnInit {
     public counties: string[];
     public shippingZoneForm: FormGroup;
 
-    constructor(private readonly formBuilder: FormBuilder) {}
+    constructor(
+        private readonly formBuilder: FormBuilder,
+        private readonly shippingZoneApiService: ShippingZonesApiService,
+        private readonly message: NzMessageService
+    ) {}
 
     public ngOnInit(): void {
         this.shippingZoneForm = this.formBuilder.group({
@@ -32,5 +38,39 @@ export class DeliveryZonesFormModalComponent implements OnInit {
 
     public euroParser(value: string): string {
         return value.replace(' €', '');
+    }
+
+    public async submit(): Promise<ShippingZone> {
+        if (this.shippingZoneForm.invalid) {
+            return;
+        }
+
+        if (this.type === 'create') {
+            try {
+                const apiRes = await this.shippingZoneApiService
+                    .createShppingZone(this.shippingZoneForm.value as ShippingZoneDto)
+                    .toPromise();
+
+                this.message.success(`Ζώνη "${this.shippingZoneForm.value.name}" δημιουργήθηκε`);
+
+                return apiRes;
+            } catch (e) {
+                this.message.error(`Υπήρξε πρόβλημα κατα τη δημιουργία της ζώνης `);
+                return;
+            }
+        } else if (this.type === 'edit') {
+            try {
+                const apiRes = await this.shippingZoneApiService
+                    .editShippingZone(this.zone.id, this.shippingZoneForm.value as ShippingZoneDto)
+                    .toPromise();
+
+                this.message.success(`Ζώνη ${this.shippingZoneForm.value.name} ανανεώθηκε`);
+
+                return apiRes;
+            } catch (e) {
+                this.message.error(`Υπήρξε πρόβλημα κατα την ανανέωση της ζώνης `);
+                return;
+            }
+        }
     }
 }

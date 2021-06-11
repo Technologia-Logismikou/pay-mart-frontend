@@ -40,6 +40,11 @@ export class DashboardComponent {
             icon: 'heat-map',
             route: 'delivery-zones',
         },
+        {
+            title: 'Κουπόνια',
+            icon: 'money-collect',
+            route: 'coupons',
+        },
     ];
 
     public localeList: { title: string; value: string }[] = [

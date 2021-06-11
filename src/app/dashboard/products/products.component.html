@@ -19,7 +19,9 @@
     ></nz-empty>
 
     <ng-template #footerTemplate>
-        <button nz-button nzType="primary"><i nz-icon nzType="plus"></i> Δημιουργία</button>
+        <button (click)="createNewProduct()" nz-button nzType="primary">
+            <i nz-icon nzType="plus"></i> Δημιουργία
+        </button>
     </ng-template>
 
     <nz-table *ngIf="products.length" #basicTable [nzData]="products" nzPageSize="4">
@@ -50,7 +52,9 @@
                     <span nz-typography nzType="success">Δημόσιο</span>
                 </td>
                 <td>
-                    <a><i nz-icon nzType="edit" nzTheme="outline"></i> Επεξεργασία</a>
+                    <a (click)="editProduct($event, data)"
+                        ><i nz-icon nzType="edit" nzTheme="outline"></i> Επεξεργασία</a
+                    >
                     <nz-divider nzType="vertical"></nz-divider>
                     <a (click)="deleteProduct($event, data)"
                         ><i nz-icon nzType="delete" nzTheme="outline"></i> Διαγραφή</a

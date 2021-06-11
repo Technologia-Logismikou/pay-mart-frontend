@@ -23,6 +23,11 @@ import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
+import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
+import { NzDescriptionsModule } from 'ng-zorro-antd/descriptions';
+import { NzUploadModule } from 'ng-zorro-antd/upload';
+import { NzStepsModule } from 'ng-zorro-antd/steps';
+import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 
 const ngZorroDeps = [
     NzCheckboxModule,
@@ -46,6 +51,11 @@ const ngZorroDeps = [
     NzPageHeaderModule,
     NzDividerModule,
     NzEmptyModule,
+    NzBreadCrumbModule,
+    NzDescriptionsModule,
+    NzUploadModule,
+    NzStepsModule,
+    NzDatePickerModule,
 ];
 
 @NgModule({

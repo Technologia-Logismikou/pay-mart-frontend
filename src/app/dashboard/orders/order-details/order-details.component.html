@@ -1,0 +1,33 @@
+<nz-breadcrumb>
+    <nz-breadcrumb-item>
+        <a [routerLink]="['/', 'dashboard']">Αρχική</a>
+    </nz-breadcrumb-item>
+    <nz-breadcrumb-item>
+        <a [routerLink]="['../']">Παραγγελίες</a>
+    </nz-breadcrumb-item>
+    <nz-breadcrumb-item>
+        {{ customer }}
+    </nz-breadcrumb-item>
+</nz-breadcrumb>
+
+<br />
+<br />
+
+<div class="content">
+    <h2>
+        Παραγγελία <span nz-typography nzType="secondary">{{ customer }}</span>
+    </h2>
+
+    <nz-descriptions nzTitle="Παραγγελία">
+        <nz-descriptions-item nzTitle="Όνομα Πελάτη">{{ order.customer }}</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Διεύθηνση χρεώσης">{{ order.billingAddress }}</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Κουπόνι">{{ order.coupon }}</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Διεύθηνση αποστολής">{{ order.shippingAddress }}</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Νομός">
+            {{ order.county }}
+        </nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Κατάσταση">
+            <span nz-typography nzType="warning">Σε επεξεργασία</span>
+        </nz-descriptions-item>
+    </nz-descriptions>
+</div>

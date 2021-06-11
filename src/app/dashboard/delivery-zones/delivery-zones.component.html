@@ -36,6 +36,8 @@
             <ul nz-list-item-actions>
                 <nz-list-item-action>
                     <a (click)="editShippingZone(zone)"><i nz-icon [nzType]="'edit'"></i> Επεξεργασία</a>
+                    <nz-divider nzType="vertical"></nz-divider>
+                    <a (click)="deleteShippingZone(zone)"><i nz-icon nzType="delete" nzTheme="outline"></i> Διαγραφή</a>
                 </nz-list-item-action>
             </ul>
             <strong>

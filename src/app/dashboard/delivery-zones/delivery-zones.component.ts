@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalService } from 'ng-zorro-antd/modal';
+import { ShippingZonesService as ShippingZoneApiService } from 'src/app/core/services/api/shipping-zones/shipping-zones.service';
 import { ShippingZone } from 'src/app/helpers/models/shipping-zone.model';
 import { COUNTIES } from '../../helpers/constants';
 import { DeliveryZonesFormModalComponent } from './delivery-zones-form-modal/delivery-zones-form-modal.component';
@@ -11,77 +12,19 @@ import { DeliveryZonesFormModalComponent } from './delivery-zones-form-modal/del
     styleUrls: ['./delivery-zones.component.scss'],
 })
 export class DeliveryZonesComponent implements OnInit {
-    public shippingZones: ShippingZone[] =
-        // TODO -> replace with api data
-        [
-            {
-                name: 'Για την αττική',
-                counties: ['Αττικής'],
-                rate: 5,
-            },
-            {
-                name: 'Εκτός Αττικής',
-                counties: [
-                    'Αιτωλοακαρνανίας',
-                    'Αργολίδας',
-                    'Αρκαδίας',
-                    'Άρτας',
-                    'Αχαΐας',
-                    'Βοιωτίας',
-                    'Γρεβενών',
-                    'Δράμας',
-                    'Δωδεκανήσου',
-                    'Έβρου',
-                    'Ευβοίας',
-                    'Ευρυτανίας',
-                    'Ζακύνθου',
-                    'Ηλείας',
-                    'Ημαθίας',
-                    'Ηρακλείου',
-                    'Θεσπρωτίας',
-                    'Θεσσαλονίκης',
-                    'Ιωαννίνων',
-                    'Καβάλας',
-                    'Καρδίτσας',
-                    'Καστοριάς',
-                    'Κέρκυρας',
-                    'Κεφαλληνίας',
-                    'Κιλκίς',
-                    'Κοζάνης',
-                    'Κορινθίας',
-                    'Κυκλάδων',
-                    'Λακωνίας',
-                    'Λάρισας',
-                    'Λασιθίου',
-                    'Λέσβου',
-                    'Λευκάδας',
-                    'Μαγνησίας',
-                    'Μεσσηνίας',
-                    'Ξάνθης',
-                    'Πέλλας',
-                    'Πιερίας',
-                    'Πρέβεζας',
-                    'Ρεθύμνης',
-                    'Ροδόπης',
-                    'Σάμου',
-                    'Σερρών',
-                    'Τρικάλων',
-                    'Φθιώτιδας',
-                    'Φλώρινας',
-                    'Φωκίδας',
-                    'Χαλκιδικής',
-                    'Χανίων',
-                    'Χίου',
-                ],
-                rate: 5,
-            },
-        ];
+    public shippingZones: ShippingZone[] = [];
 
     public counties = COUNTIES;
 
-    constructor(public msg: NzMessageService, private readonly modalSrvc: NzModalService) {}
+    constructor(
+        public msg: NzMessageService,
+        private readonly modalSrvc: NzModalService,
+        private readonly shippingZoneApi: ShippingZoneApiService
+    ) {}
 
-    public ngOnInit(): void {}
+    public async ngOnInit(): Promise<void> {
+        this.shippingZones = await this.shippingZoneApi.getShippingZones().toPromise();
+    }
 
     public editShippingZone(zone: ShippingZone): void {
         this.modalSrvc.create({
@@ -92,7 +35,11 @@ export class DeliveryZonesComponent implements OnInit {
                 counties: this.counties,
                 zone,
             },
-            nzOnOk: () => console.log('ok'),
+            nzOnOk: async (instance) => {
+                const res = await instance.submit();
+
+                if (res) this.shippingZones = await this.shippingZoneApi.getShippingZones().toPromise();
+            },
             nzOnCancel: () => console.log('cancel'),
         });
     }
@@ -105,8 +52,24 @@ export class DeliveryZonesComponent implements OnInit {
                 type: 'create',
                 counties: this.counties,
             },
-            nzOnOk: () => console.log('ok'),
+            nzOnOk: async (instance) => {
+                const res = await instance.submit();
+
+                if (res) this.shippingZones = await this.shippingZoneApi.getShippingZones().toPromise();
+            },
             nzOnCancel: () => console.log('cancel'),
         });
+    }
+
+    public async deleteShippingZone(zone: ShippingZone): Promise<void> {
+        try {
+            await this.shippingZoneApi.deleteShippingZone(zone.id).toPromise();
+
+            this.msg.success(`Η ζώνη ${zone.name} διαγράφηκε επιτυχώς`);
+
+            this.shippingZones = this.shippingZones.filter((shippingZone) => shippingZone.id !== zone.id);
+        } catch (e) {
+            this.msg.error(`Υπήρξε σφάλμα κατα την διαγραφή της ζώνης ${zone.name}`);
+        }
     }
 }
