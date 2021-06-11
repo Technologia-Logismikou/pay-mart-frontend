@@ -28,6 +28,8 @@ import { NzDescriptionsModule } from 'ng-zorro-antd/descriptions';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
 import { LoadingComponent } from './components/loading/loading.component';
 import { NzCarouselModule } from 'ng-zorro-antd/carousel';
+import { NzStepsModule } from 'ng-zorro-antd/steps';
+import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 
 const ngZorroDeps = [
     NzCheckboxModule,
@@ -55,6 +57,8 @@ const ngZorroDeps = [
     NzDescriptionsModule,
     NzUploadModule,
     NzCarouselModule,
+    NzStepsModule,
+    NzDatePickerModule,
 ];
 
 @NgModule({

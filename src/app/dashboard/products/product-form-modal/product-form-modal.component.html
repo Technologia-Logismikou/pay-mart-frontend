@@ -16,10 +16,33 @@
         </nz-form-control>
         <ng-template #urlErrorTpl let-control>
             <ng-container *ngIf="control.hasError('required')"> Το πεδίο "URL" είναι απαραίτητ </ng-container>
+        </ng-template>
+    </nz-form-item>
+
+    <nz-form-item>
+        <nz-form-label [nzSpan]="7" nzRequired>Slug Προϊόντος</nz-form-label>
+        <nz-form-control [nzSpan]="12" [nzErrorTip]="slugErrorTpl">
+            <input nz-input formControlName="slug" placeholder="Slug Προϊόντος" />
+        </nz-form-control>
+        <ng-template #slugErrorTpl let-control>
+            <ng-container *ngIf="control.hasError('required')"> Το πεδίο "Slug" είναι απαραίτητ </ng-container>
             <ng-container *ngIf="control.hasError('slugError')">
-                Το πεδίο url πρέπει να είναι της μορφής "proion-kolie" ή "kolie"
+                Το πεδίο slug πρέπει να είναι της μορφής "proion-kolie" ή "kolie"
             </ng-container>
         </ng-template>
+    </nz-form-item>
+
+    <nz-form-item>
+        <nz-form-label [nzSpan]="7" nzRequired>Κατηγορία Προϊόντος</nz-form-label>
+        <nz-form-control [nzSpan]="12">
+            <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Δίαλεξε Κατηγορία" formControlName="category">
+                <nz-option
+                    *ngFor="let category of categories"
+                    [nzLabel]="category.name"
+                    [nzValue]="category.name"
+                ></nz-option>
+            </nz-select>
+        </nz-form-control>
     </nz-form-item>
 
     <nz-form-item>

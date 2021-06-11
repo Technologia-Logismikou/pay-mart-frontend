@@ -1,0 +1,51 @@
+<nz-page-header
+    class="site-page-header"
+    nzBackIcon
+    nzTitle="Κουπόνια"
+    nzSubtitle="Επεξεργάσου τα εκπτωτικά κουπόνια σου."
+>
+    <nz-page-header-extra>
+        <button (click)="createCoupon()" nz-button nzType="primary">
+            <i nz-icon [nzType]="'plus'"></i> Δημιουργία
+        </button>
+    </nz-page-header-extra>
+</nz-page-header>
+
+<div class="content">
+    <br />
+    <p nz-typography nzType="secondary">
+        Δημιούργησε και επεξεργάσου τα κουπόνια σου για να προσφέρεις εκπτώσεις στους πελάτες σου.
+    </p>
+    <br />
+    <h3 *ngIf="!coupons.length">Διαθέσιμα κουπώνια</h3>
+
+    <nz-empty
+        *ngIf="!coupons.length"
+        [nzNotFoundContent]="'Δεν υπάρχουν κουπόνια... Δημιούργησε το πρώτο!'"
+        [nzNotFoundFooter]="footerTemplate"
+    ></nz-empty>
+
+    <ng-template #footerTemplate>
+        <button nz-button nzType="primary"><i nz-icon nzType="plus"></i> Δημιουργία</button>
+    </ng-template>
+
+    <nz-table #basicTable *ngIf="coupons.length" [nzData]="coupons" nzPageSize="4">
+        <thead>
+            <tr>
+                <th>Όνομα</th>
+                <th>Ενέργειές</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let data of basicTable.data">
+                <td>{{ data.name }}</td>
+
+                <td>
+                    <a (click)="editCoupon(data)">Επεξεργασία</a>
+                    <nz-divider nzType="vertical"></nz-divider>
+                    <a (click)="deleteCoupon(data.id)">Διαγραφή</a>
+                </td>
+            </tr>
+        </tbody>
+    </nz-table>
+</div>
