@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { debounceTime } from 'rxjs/operators';
 
 @Component({
     selector: 'app-register',
@@ -27,11 +28,11 @@ export class RegisterComponent implements OnInit {
                     subdomain: this.formBuilder.control('', [Validators.required]),
                     website: this.formBuilder.control('', []),
                 }),
-                bankAccount: {
+                bankAccount: this.formBuilder.group({
                     iban: this.formBuilder.control('', [Validators.required]),
                     name: this.formBuilder.control('', [Validators.required]),
                     beneficiary: this.formBuilder.control('', [Validators.required]),
-                },
+                }),
             },
             {
                 validators: [
@@ -47,8 +48,6 @@ export class RegisterComponent implements OnInit {
                 ],
             }
         );
-
-        this.registrationForm.valueChanges.subscribe(console.log);
     }
 
     public stepUp(): void {
@@ -60,6 +59,8 @@ export class RegisterComponent implements OnInit {
     }
 
     public async submit(): Promise<void> {
-        console.log(this.registrationForm.value);
+        const { passwordAgain, ...submissionValue } = this.registrationForm.value;
+
+        console.log(submissionValue);
     }
 }

@@ -72,20 +72,115 @@
                         <button nz-button nzType="primary" (click)="stepUp()">Επόμενο</button>
                     </div>
 
-                    <div *ngIf="step === 1">
+                    <div *ngIf="step === 1" formGroupName="store">
                         <h1>Επιχείρηση</h1>
 
-                        <p>the things u need to do</p>
+                        <p>Μερικές βασικές πληροφορίες για την επιχείρηση σου</p>
+
+                        <nz-form-label nzRequired>Εmail Επιχείρησης</nz-form-label>
+                        <nz-form-control [nzErrorTip]="emailErrorTpl">
+                            <input nz-input formControlName="email" placeholder="Email επιχείρησης" />
+                            <ng-template #emailErrorTpl let-control>
+                                <ng-container *ngIf="control.hasError('required')">
+                                    Το πεδίο "Email επιχείρησης" είναι απαραίτητ
+                                </ng-container>
+                                <ng-container *ngIf="control.hasError('email')">
+                                    Το email δεν είναι σωστής μορφής
+                                </ng-container>
+                            </ng-template>
+                        </nz-form-control>
+
+                        <nz-form-label nzRequired>Όνομα Επιχείρησης</nz-form-label>
+                        <nz-form-control [nzErrorTip]="nameErrorTpl">
+                            <input nz-input formControlName="name" placeholder="Όνομα επιχείρησης" />
+                            <ng-template #nameErrorTpl let-control>
+                                <ng-container *ngIf="control.hasError('required')">
+                                    Το πεδίο "Όνομα επιχείρησης" είναι απαραίτητ
+                                </ng-container>
+                            </ng-template>
+                        </nz-form-control>
+
+                        <nz-form-label nzRequired>Ιστοσελίδα Επιχείρησης</nz-form-label>
+                        <nz-form-control [nzErrorTip]="websiteErrorTpl">
+                            <input nz-input formControlName="website" placeholder="Ιστοσελίδα επιχείρησης" />
+                            <ng-template #websiteErrorTpl let-control>
+                                <ng-container *ngIf="control.hasError('required')">
+                                    Το πεδίο "Ιστοσελίδα επιχείρησης" είναι απαραίτητ
+                                </ng-container>
+                            </ng-template>
+                        </nz-form-control>
+
+                        <nz-form-label nzRequired>Subdomain Επιχείρησης</nz-form-label>
+                        <nz-form-control [nzErrorTip]="subdomainErrorTpl">
+                            <input nz-input formControlName="subdomain" placeholder="Subdomain επιχείρησης" />
+                            <ng-template #subdomainErrorTpl let-control>
+                                <ng-container *ngIf="control.hasError('required')">
+                                    Το πεδίο "Subdomain επιχείρησης" είναι απαραίτητ
+                                </ng-container>
+                            </ng-template>
+                        </nz-form-control>
+
+                        <nz-form-label nzRequired>Τηλέφωνο Επιχείρησης</nz-form-label>
+                        <nz-form-control [nzErrorTip]="phoneErrorTpl">
+                            <input nz-input formControlName="phone" placeholder="Τηλέφωνο επιχείρησης" />
+                            <ng-template #phoneErrorTpl let-control>
+                                <ng-container *ngIf="control.hasError('required')">
+                                    Το πεδίο "Τηλέφωνο επιχείρησης" είναι απαραίτητ
+                                </ng-container>
+                            </ng-template>
+                        </nz-form-control>
+
+                        <nz-form-label nzRequired>Διεύθηνση Επιχείρησης</nz-form-label>
+                        <nz-form-control [nzErrorTip]="addressErrorTpl">
+                            <input nz-input formControlName="address" placeholder="Διεύθηνση επιχείρησης" />
+                            <ng-template #addressErrorTpl let-control>
+                                <ng-container *ngIf="control.hasError('required')">
+                                    Το πεδίο "Διεύθηνση επιχείρησης" είναι απαραίτητ
+                                </ng-container>
+                            </ng-template>
+                        </nz-form-control>
+
                         <button nz-button (click)="stepDown()">Πίσω</button>
                         <button nz-button nzType="primary" (click)="stepUp()">Επόμενο</button>
                     </div>
 
-                    <div *ngIf="step === 2">
+                    <div *ngIf="step === 2" formGroupName="bankAccount">
                         <h1>Ολοκλήρωση</h1>
 
-                        <p>the things u need to do</p>
+                        <nz-form-label nzRequired>IBAN</nz-form-label>
+                        <nz-form-control [nzErrorTip]="IBANErrorTpl">
+                            <input nz-input formControlName="iban" placeholder="IBAN" />
+                            <ng-template #IBANErrorTpl let-control>
+                                <ng-container *ngIf="control.hasError('required')">
+                                    Το πεδίο "IBAN" είναι απαραίτητ
+                                </ng-container>
+                            </ng-template>
+                        </nz-form-control>
+
+                        <nz-form-label nzRequired>Δικαιούχος</nz-form-label>
+                        <nz-form-control [nzErrorTip]="beneficiaryErrorTpl">
+                            <input nz-input formControlName="beneficiary" placeholder="Δικαιούχος Λογαρισαμού" />
+                            <ng-template #beneficiaryErrorTpl let-control>
+                                <ng-container *ngIf="control.hasError('required')">
+                                    Το πεδίο "Δικαιούχος Λογαρισαμού" είναι απαραίτητ
+                                </ng-container>
+                            </ng-template>
+                        </nz-form-control>
+
+                        <nz-form-label nzRequired>Όνομα</nz-form-label>
+                        <nz-form-control [nzErrorTip]="nameErrorTpl">
+                            <input nz-input formControlName="name" placeholder="Όνομα Λογαρισαμού" />
+                            <ng-template #nameErrorTpl let-control>
+                                <ng-container *ngIf="control.hasError('required')">
+                                    Το πεδίο "Όνομα Λογαρισαμού" είναι απαραίτητ
+                                </ng-container>
+                            </ng-template>
+                        </nz-form-control>
+
                         <button nz-button (click)="stepDown()">Πίσω</button>
-                        <button nz-button nzType="primary" (click)="stepUp()" [disabled]="step === 2">Επόμενο</button>
+                        <button nz-button nzType="primary" type="submit" [disabled]="registrationForm.invalid">
+                            Δημιουργία
+                        </button>
                     </div>
                 </form>
             </div>
