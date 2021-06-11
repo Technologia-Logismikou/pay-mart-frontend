@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { CategoriesService } from 'src/app/core/services/api/categories/categories.service';
 import { Category } from 'src/app/helpers/models/category.model';
@@ -13,7 +14,11 @@ import { categoriesToListOfMapData, convertTreeToList, TreeNodeInterface } from 
 export class CategoriesComponent implements OnInit {
     public categories: Category[] = [];
 
-    constructor(private readonly modalService: NzModalService, private readonly categoryApi: CategoriesService) {}
+    constructor(
+        private readonly modalService: NzModalService,
+        private readonly categoryApi: CategoriesService,
+        private readonly message: NzMessageService
+    ) {}
 
     // listOfMapData: TreeNodeInterface[] = [];
     // mapOfExpandedData: { [key: string]: TreeNodeInterface[] } = {};
@@ -47,8 +52,46 @@ export class CategoriesComponent implements OnInit {
             nzComponentParams: {
                 type: 'create',
             },
-            nzOnOk: () => console.log('ok'),
+            nzOnOk: async (componentInstance) => {
+                const modalVal = await componentInstance.submit();
+
+                if (modalVal) {
+                    this.categories = [...this.categories, modalVal];
+                }
+            },
             nzOnCancel: () => console.log('cancel'),
         });
+    }
+
+    public editCategory(data: Category) {
+        this.modalService.create({
+            nzTitle: 'Επεξεργασία ' + data.name,
+            nzContent: CategoryFormModalComponent,
+            nzComponentParams: {
+                type: 'edit',
+                category: data,
+            },
+            nzOnOk: async (componentInstance) => {
+                const modalVal = await componentInstance.submit();
+
+                if (modalVal) {
+                    this.categories = this.categories.filter((cat) => cat.id === modalVal.id);
+                    this.categories.push(modalVal);
+                }
+            },
+            nzOnCancel: () => console.log('cancel'),
+        });
+    }
+
+    public async deleteCategory(id: string): Promise<void> {
+        try {
+            const apiRes = await this.categoryApi.deleteCategory(id).toPromise();
+
+            this.message.success(`Η κατηγορία διαγράφηκε`);
+
+            this.categories = this.categories.filter((cat) => cat.id === id);
+        } catch (error) {
+            this.message.error(`Υπήρξε πρόβλημα κατα την διαγραφή`);
+        }
     }
 }

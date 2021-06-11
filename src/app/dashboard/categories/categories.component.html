@@ -30,15 +30,22 @@
         <button nz-button nzType="primary"><i nz-icon nzType="plus"></i> Δημιουργία</button>
     </ng-template>
 
-    <nz-table *ngIf="categories.length" #basicTable [nzData]="categories" nzPageSize="4">
+    <nz-table #basicTable *ngIf="categories.length" [nzData]="categories" nzPageSize="4">
         <thead>
             <tr>
                 <th>Όνομα</th>
+                <th>Ενέργειές</th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let data of basicTable.data">
                 <td>{{ data.name }}</td>
+
+                <td>
+                    <a (click)="editCategory(data)">Επεξεργασία</a>
+                    <nz-divider nzType="vertical"></nz-divider>
+                    <a (click)="deleteCategory(data.id)">Διαγραφή</a>
+                </td>
             </tr>
         </tbody>
     </nz-table>
