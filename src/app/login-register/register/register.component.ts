@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
-import { debounceTime } from 'rxjs/operators';
+import { Router } from '@angular/router';
+import { NzMessageService } from 'ng-zorro-antd/message';
+import { SellerService as SellerApiService } from 'src/app/core/services/api/seller/seller.service';
 
 @Component({
     selector: 'app-register',
@@ -11,7 +13,12 @@ export class RegisterComponent implements OnInit {
     public step = 0;
     public registrationForm: FormGroup;
 
-    constructor(private readonly formBuilder: FormBuilder) {}
+    constructor(
+        private readonly formBuilder: FormBuilder,
+        private sellerApi: SellerApiService,
+        private readonly message: NzMessageService,
+        private readonly router: Router
+    ) {}
 
     public ngOnInit(): void {
         this.registrationForm = this.formBuilder.group(
@@ -59,8 +66,20 @@ export class RegisterComponent implements OnInit {
     }
 
     public async submit(): Promise<void> {
+        if (this.registrationForm.invalid) {
+            return;
+        }
+
         const { passwordAgain, ...submissionValue } = this.registrationForm.value;
 
-        console.log(submissionValue);
+        try {
+            const apiRes = await this.sellerApi.createSeller(submissionValue).toPromise();
+
+            this.message.success(`Εγγραφήκατε επιτυχώς`);
+
+            this.router.navigate(['/', 'dashboard']);
+        } catch (error) {
+            this.message.error('Υπήρξε πρόβλημα κατα την εγγραφή');
+        }
     }
 }
