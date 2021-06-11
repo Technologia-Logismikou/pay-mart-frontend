@@ -1,0 +1,69 @@
+<form [formGroup]="couponForm">
+    <nz-form-item>
+        <nz-form-label [nzSpan]="7" nzRequired>Όνομα κουπονιού</nz-form-label>
+        <nz-form-control [nzSpan]="12" [nzErrorTip]="nameErrorTpl">
+            <input nz-input formControlName="name" placeholder="Όνομα" />
+            <ng-template #nameErrorTpl let-control>
+                <ng-container *ngIf="control.hasError('required')"> Το πεδίο "Όνομα" είναι απαραίτητ </ng-container>
+            </ng-template>
+        </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+        <nz-form-label [nzSpan]="7" nzRequired>Περιγραφή κουπονιού</nz-form-label>
+        <nz-form-control [nzSpan]="12" [nzErrorTip]="descriptionErrorTemplate">
+            <textarea nz-input formControlName="description" placeholder="Περιγραφή"></textarea>
+            <ng-template #descriptionErrorTemplate let-control>
+                <ng-container *ngIf="control.hasError('required')"> Το πεδίο "Περιγραφή" είναι απαραίτητ </ng-container>
+            </ng-template>
+        </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+        <nz-form-label [nzSpan]="7" nzRequired>Ποσό έκπτωσης</nz-form-label>
+        <nz-form-control [nzSpan]="12" [nzErrorTip]="amountOffErrorTemplate">
+            <nz-input-number
+                formControlName="amountOff"
+                [nzMin]="0"
+                [nzStep]="0.1"
+                [nzFormatter]="formatterEuro"
+                [nzParser]="parserEuro"
+            ></nz-input-number>
+
+            <ng-template #amountOffErrorTemplate let-control>
+                <ng-container *ngIf="control.hasError('required')">
+                    Το πεδίο "Ποσό έκπτωσης" είναι απαραίτητ
+                </ng-container>
+            </ng-template>
+        </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+        <nz-form-label [nzSpan]="7" nzRequired>Ποσοστό έκπτωσης</nz-form-label>
+        <nz-form-control [nzSpan]="12" [nzErrorTip]="percentOffErrorTemplate">
+            <nz-input-number
+                formControlName="percentOff"
+                [nzMin]="0"
+                [nzMax]="100"
+                [nzStep]="1"
+                [nzFormatter]="formatterPercent"
+                [nzParser]="parserPercent"
+            ></nz-input-number>
+
+            <ng-template #percentOffErrorTemplate let-control>
+                <ng-container *ngIf="control.hasError('required')">
+                    Το πεδίο "Ποσοστό έκπτωσης" είναι απαραίτητ
+                </ng-container>
+            </ng-template>
+        </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+        <nz-form-label [nzSpan]="7" nzRequired>Ημερομηνία λήξης</nz-form-label>
+        <nz-form-control [nzSpan]="12">
+            <nz-date-picker formControlName="expiration"></nz-date-picker>
+        </nz-form-control>
+    </nz-form-item>
+
+    <label nz-checkbox formControlName="active">Ενεργό</label>
+</form>

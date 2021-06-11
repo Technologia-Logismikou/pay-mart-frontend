@@ -16,6 +16,8 @@ import { DeliveryZonesFormModalComponent } from './delivery-zones/delivery-zones
 import { ProductFormModalComponent } from './products/product-form-modal/product-form-modal.component';
 import { CategoryFormModalComponent } from './categories/category-form-modal/category-form-modal.component';
 import { OrderDetailsComponent } from './orders/order-details/order-details.component';
+import { CouponsComponent } from './coupons/coupons.component';
+import { CouponsFormModalComponent } from './coupons/coupons-form-modal/coupons-form-modal.component';
 
 @NgModule({
     declarations: [
@@ -30,6 +32,8 @@ import { OrderDetailsComponent } from './orders/order-details/order-details.comp
         ProductFormModalComponent,
         CategoryFormModalComponent,
         OrderDetailsComponent,
+        CouponsComponent,
+        CouponsFormModalComponent,
     ],
     imports: [CommonModule, DashboardRoutingModule, SharedModule, ColorPickerModule, ChartsModule],
 })

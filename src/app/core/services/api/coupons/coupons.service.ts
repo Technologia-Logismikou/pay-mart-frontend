@@ -32,7 +32,7 @@ export class CouponsService {
 
     public deleteCoupon(id: string): Observable<Coupon> {
         return this.http.delete<Coupon>(
-            `${environment.backend.protocol}://${environment.backend.url}:${environment.backend.port}/coupons`
+            `${environment.backend.protocol}://${environment.backend.url}:${environment.backend.port}/coupons/${id}`
         );
     }
 }

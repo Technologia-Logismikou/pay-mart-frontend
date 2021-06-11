@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppearanceComponent } from './appearance/appearance.component';
 import { CategoriesComponent } from './categories/categories.component';
+import { CouponsComponent } from './coupons/coupons.component';
 import { DashboardComponent } from './dashboard.component';
 import { DeliveryZonesComponent } from './delivery-zones/delivery-zones.component';
 import { MainComponent } from './main/main.component';
@@ -51,6 +52,10 @@ const routes: Routes = [
             {
                 path: 'delivery-zones',
                 component: DeliveryZonesComponent,
+            },
+            {
+                path: 'coupons',
+                component: CouponsComponent,
             },
         ],
     },

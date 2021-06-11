@@ -3,7 +3,6 @@ export interface CouponDto {
     description: string;
     amountOff: number;
     percentOff: number;
-    timesRedeemed: number;
     maxRedemptions: number;
     expiration: string;
     active: boolean;
