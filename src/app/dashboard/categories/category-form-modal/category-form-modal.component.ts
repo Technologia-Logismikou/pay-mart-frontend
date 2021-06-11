@@ -9,8 +9,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class CategoryFormModalComponent implements OnInit {
     @Input()
     public type: 'create' | 'edit';
-    @Input()
-    public categoryList: string[];
+    // @Input()
+    // public categoryList: string[];
     public categoryForm: FormGroup;
 
     constructor(private readonly formBuilder: FormBuilder) {}
@@ -18,7 +18,6 @@ export class CategoryFormModalComponent implements OnInit {
     public ngOnInit(): void {
         this.categoryForm = this.formBuilder.group({
             name: this.formBuilder.control('', [Validators.required]),
-            parent: this.formBuilder.control('', [Validators.required]),
         });
 
         this.categoryForm.valueChanges.subscribe(console.log);

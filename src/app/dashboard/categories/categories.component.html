@@ -30,7 +30,20 @@
         <button nz-button nzType="primary"><i nz-icon nzType="plus"></i> Δημιουργία</button>
     </ng-template>
 
-    <nz-table #expandTable [nzData]="listOfMapData" nzTableLayout="fixed">
+    <nz-table *ngIf="categories.length" #basicTable [nzData]="categories" nzPageSize="4">
+        <thead>
+            <tr>
+                <th>Όνομα</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let data of basicTable.data">
+                <td>{{ data.name }}</td>
+            </tr>
+        </tbody>
+    </nz-table>
+
+    <!-- <nz-table #expandTable [nzData]="listOfMapData" nzTableLayout="fixed">
         <thead>
             <tr>
                 <th>Όνομα</th>
@@ -62,5 +75,5 @@
                 </ng-container>
             </ng-container>
         </tbody>
-    </nz-table>
+    </nz-table> -->
 </div>
